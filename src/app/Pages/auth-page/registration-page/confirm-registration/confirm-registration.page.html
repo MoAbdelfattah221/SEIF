@@ -1,0 +1,37 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="auth-page/registration-page"></ion-back-button>
+        </ion-buttons>
+        <ion-title>Sign Up</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="ion-padding">
+        <div class="container ion-text-center">
+            <img src="assets/Images/verification.png" alt="Logo">
+            <p>   Please Choose Email Or Phone Number To Send Verification Code To Continue Registration.</p>
+        </div>
+
+        <br>
+        <form (submit)="onSubmitConfirmRegistration()">
+            <ion-list>
+                <ion-radio-group value="biff">
+                    <ion-item>
+                        <ion-label>Phone Number</ion-label>
+                        <ion-radio slot="start" value="biff"></ion-radio>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-label>Email Address</ion-label>
+                        <ion-radio slot="start" value="griff"></ion-radio>
+                    </ion-item>
+                </ion-radio-group>
+            </ion-list>
+            <br>
+            <br>
+            <ion-button expand="block" color="success" type="submit">Send</ion-button>
+        </form>
+    </div>
+</ion-content>

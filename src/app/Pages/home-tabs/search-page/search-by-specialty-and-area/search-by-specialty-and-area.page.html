@@ -1,0 +1,25 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar color="success">
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="home-page-tabs/search-page"></ion-back-button>
+        </ion-buttons>
+        <ion-title>Searching In {{locationResults}}</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="ion-padding">
+        <ion-searchbar #search (ionChange)="searchSpec($event)"></ion-searchbar>
+        <ion-list>
+            <ion-list-header>
+                Most Popular Specialties
+            </ion-list-header>
+            <ion-item *ngFor="let drSpec of searchedItem" (click)="searchForDoctorBySpeciality(drSpec.id)">
+                <ion-avatar slot="start">
+                    <img [src]="drSpec.image">
+                </ion-avatar>
+                <ion-label>{{drSpec.display_name}}</ion-label>
+            </ion-item>
+        </ion-list>
+    </div>
+</ion-content>

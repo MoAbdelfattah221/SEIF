@@ -1,0 +1,47 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="home-page-tabs/search-page"></ion-back-button>
+        </ion-buttons>
+        <ion-title>Search By Doctor Name</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="ion-padding">
+        <ion-row>
+            <ion-col size="12">
+                <div class="search-bar">
+                    <ion-searchbar></ion-searchbar>
+                    <div class="search-bar-buttons">
+                        <ion-grid>
+                            <ion-row>
+                                <ion-col size="6">
+                                    <ion-button size="small" fill="outline" color="success">
+                                        <ion-icon name="filter-outline"></ion-icon>
+                                    </ion-button>
+                                </ion-col>
+                                <ion-col size="6">
+                                    <ion-button size="small" fill="outline" color="success">
+                                        <ion-icon name="location-outline"></ion-icon>
+                                    </ion-button>
+                                </ion-col>
+                            </ion-row>
+                        </ion-grid>
+                    </div>
+                </div>
+            </ion-col>
+        </ion-row>
+        <app-card [drName]="'Amr Mossad'" [drAvailableIn]="'9 PM'" [drLocationDistance]="'22 Km'" [drLocation]="'Haram'"
+                  [drImage]="'assets/Images/Avatar.png'"
+                  [drMoney]="'500 LE'" [drPosition]="'Dentist'" [drWaitingTime]="'10 Min'"></app-card>
+        <app-card [drName]="'Mohammed Sheref'" [drAvailableIn]="'9 PM'" [drLocationDistance]="'22 Km'"
+                  [drLocation]="'Haram'"
+                  [drImage]="'assets/Images/Avatar.png'"
+                  [drMoney]="'500 LE'" [drPosition]="'Dentist'" [drWaitingTime]="'10 Min'"></app-card>
+        <app-card [drName]="'Karem Kamel'" [drAvailableIn]="'9 PM'" [drLocationDistance]="'22 Km'"
+                  [drLocation]="'Haram'"
+                  [drImage]="'assets/Images/Avatar.png'"
+                  [drMoney]="'500 LE'" [drPosition]="'Dentist'" [drWaitingTime]="'10 Min'"></app-card>
+    </div>
+</ion-content>

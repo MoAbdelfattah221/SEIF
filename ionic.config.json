@@ -1,0 +1,7 @@
+{
+  "name": "El-Seif-Health-Care",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

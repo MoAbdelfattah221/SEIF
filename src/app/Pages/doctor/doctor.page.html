@@ -1,0 +1,111 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref='/home-page-tabs/home-page'></ion-back-button>
+        </ion-buttons>
+        <ion-title>{{doctorData.name}} Profile</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="ion-padding">
+        <ion-card class="ion-text-center">
+            <br>
+            <img style="border-radius: 50%; height: 100px; width: 100px"
+                 [src]="'data:image/png;base64,' + doctorData.image_1920" [alt]="doctorData.name"/>
+            <ion-card-header>
+                <ion-card-subtitle color="success">{{doctorData.name}}</ion-card-subtitle>
+                <ion-card-subtitle color="dark">{{doctorData.specialty[1]}}</ion-card-subtitle>
+                <ion-grid>
+                    <ion-row>
+                        <ion-col size="12" class="ion-text-center">
+                            <ionic-rating-component #rating
+                                                    activeIcon="star"
+                                                    defaultIcon="star-outline"
+                                                    activeColor="#e0bb2e"
+                                                    defaultColor="#aaaaaa"
+                                                    readonly="true"
+                                                    rating="{{doctorData.rate_overall}}"
+                                                    fontSize="15px"
+                            >
+                            </ionic-rating-component>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </ion-card-header>
+            <ion-card-content>
+                ({{doctorData.count_rate}} Rating From Visitors)
+            </ion-card-content>
+        </ion-card>
+        <ion-card>
+            <ion-card-content>
+                <ion-grid>
+                    <ion-row>
+                        <ion-col>
+                            <ion-icon name="cash-outline" color="success"></ion-icon>
+                            Fees
+                            <ion-text color="success">({{doctorData.consul_fee}})</ion-text>
+                        </ion-col>
+                        <ion-col>
+                            <ion-icon name="time-outline" color="success"></ion-icon>
+                            W.T.
+                            <ion-text color="success">15 Min.</ion-text>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </ion-card-content>
+        </ion-card>
+
+        <ion-slides [options]="slideOptions" *ngIf="slots">
+            <ion-slide *ngFor="let slot of slots">
+
+                <ion-card style="width: 100%">
+                    <ion-card-header>
+                        <ion-grid>
+                            <ion-row>
+                                <ion-col size="12">
+                                    <ion-card-title>{{slot.slot[0].display_name | date: 'EEEE, MMMM d, y'}}</ion-card-title>
+                                    <!--                                    <ion-card-subtitle>{{slots.length()}} Slots Available</ion-card-subtitle>-->
+                                </ion-col>
+
+                                <!--                                <ion-col>-->
+                                <!--                                    <ion-button size="small" color="success">See All</ion-button>-->
+                                <!--                                </ion-col>-->
+                            </ion-row>
+                        </ion-grid>
+
+                    </ion-card-header>
+
+                    <!--                    <ion-card-content>-->
+                    <!--                        <ion-grid>-->
+                    <!--                            <ion-row>-->
+                    <!--                                <ion-col size="4">-->
+                    <!--                                    <ion-note>08:00 AM</ion-note>-->
+                    <!--                                </ion-col>-->
+                    <!--                                <ion-col size="4">-->
+                    <!--                                    <ion-note>08:00 AM</ion-note>-->
+                    <!--                                </ion-col>-->
+                    <!--                                <ion-col size="4">-->
+                    <!--                                    <ion-note>08:00 AM</ion-note>-->
+                    <!--                                </ion-col>-->
+                    <!--                            </ion-row>-->
+                    <!--                        </ion-grid>-->
+                    <!--                    </ion-card-content>-->
+                </ion-card>
+            </ion-slide>
+        </ion-slides>
+
+        <ion-button expand="block" *ngIf="slots.length >= 1" color="success" class="stick-bottom" (click)="onBooking()">
+            Book An Appointment
+        </ion-button>
+
+        <ion-card *ngIf="slots.length === 0" class="ion-text-center">
+            <ion-card-header>
+                <ion-card-subtitle>Sorry</ion-card-subtitle>
+                <ion-card-title>No Slots Available For {{doctorData.name}}</ion-card-title>
+            </ion-card-header>
+        </ion-card>
+    </div>
+
+
+</ion-content>

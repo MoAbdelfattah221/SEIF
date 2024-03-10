@@ -1,0 +1,18 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref='/home-page-tabs/home-page'></ion-back-button>
+        </ion-buttons>
+        <ion-buttons slot="start">
+            <ion-back-button color="success" defaultHref="/home-page-tabs/more-page"></ion-back-button>
+        </ion-buttons>
+        <ion-title>Favorite Doctors</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div *ngFor="let doctor of favoriteDoctors">
+        <app-card [doctorData]="doctor" (favorite)="onFavoriteDoctor(doctor)"
+                  (removeFavorite)="onRemoveFavoriteDoctor(doctor)"></app-card>
+    </div>
+</ion-content>

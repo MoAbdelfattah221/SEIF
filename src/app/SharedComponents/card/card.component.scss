@@ -1,0 +1,52 @@
+.availableCard {
+  background-color: grey;
+  color: #ffffff;
+  text-align: center;
+  border-radius: 3px;
+  border: unset;
+  width: 100%;
+  line-height: 28px;
+  margin-top: 4px;
+}
+.doctor-details {
+  margin-top: 0;
+  margin-left:10px;
+  .card-doctor-name{
+    font-weight: bold;
+  }
+}
+.meta-details{
+  font-size:12px;
+  ion-icon {
+    font-size: 15px;
+    position: relative;
+    top: 2px;
+  }
+}
+.card-doctor{
+  border-bottom: 1px solid #eee;
+  padding: 0 20px;
+}
+.card-doctor-buttons{
+  padding: 0 20px;
+}
+.stars {
+  font-size: 13px;
+  .active-star {
+    color: #e0bb2e;
+  }
+}
+
+ion-card {
+  border-radius: 20px;
+  box-shadow: 0px 0px 12px 2px #dedede;
+  padding: 10px 0;
+}
+
+.item-list {
+  margin-bottom: 5px;
+}
+
+.book-now {
+  width: 100%;
+}

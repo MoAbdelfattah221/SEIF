@@ -1,0 +1,63 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref='/home-page-tabs/home-page'></ion-back-button>
+        </ion-buttons>
+        <ion-title>More Page</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="ion-padding">
+        <ion-list>
+            <!--            <ion-list-header>More Details</ion-list-header>-->
+            <ion-item>
+                <!--                <ion-avatar slot="start">-->
+                <!--                    <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">-->
+                <!--                </ion-avatar>-->
+                <!--                <ion-label>{{userData?.name}}</ion-label>-->
+                <ion-label>{{userProfileData?.name}}</ion-label>
+                <ion-button color="light" (click)="goToSetting()">
+                    <ion-icon name="settings-outline"></ion-icon>
+                </ion-button>
+
+            </ion-item>
+        </ion-list>
+
+        <!--        <ion-button *ngIf="language === 'ar'" expand="block" color="success" (click)="changeLanguage()">-->
+        <!--            <ion-icon name="language-outline" slot="start"></ion-icon>-->
+        <!--            English-->
+        <!--        </ion-button>-->
+        <!--        <ion-button *ngIf="language === 'en'" expand="block" color="success" (click)="changeLanguage('ar')">-->
+        <!--            <ion-icon name="language-outline" slot="start"></ion-icon>-->
+        <!--            العربيه-->
+        <!--        </ion-button>-->
+        <!--        <ion-button expand="block" color="success" (click)="testWhatsapp()">-->
+        <!--            <ion-icon name="log-out-outline" slot="start"></ion-icon>-->
+        <!--          Test Share Whatsapp-->
+        <!--        </ion-button>-->
+        <ion-button expand="block" fill="outline" color="danger" (click)="goToFavoriteDoctors()">
+            <ion-icon name="heart-outline"></ion-icon>
+            {{'Favorite Doctors'| translate}}
+        </ion-button>
+
+        <ion-button expand="block" color="success" (click)="logOut()">
+            <ion-icon name="log-out-outline" slot="start"></ion-icon>
+            {{'Log Out'| translate}}
+        </ion-button>
+
+        <!--        <ion-button expand="block" color="success" (click)="testLocation()">-->
+        <!--            <ion-icon name="log-out-outline" slot="start"></ion-icon>-->
+        <!--            Test Location-->
+        <!--        </ion-button>-->
+        <!--        <p *ngIf="locationResults">-->
+        <!--            {{locationResults}}-->
+        <!--        </p>-->
+
+        <!--        <ion-button expand="block" color="success" (click)="testNativeStorage()">-->
+        <!--            <ion-icon name="log-out-outline" slot="start"></ion-icon>-->
+        <!--            Test Native Storage-->
+        <!--        </ion-button>-->
+        <!--        {{test.property}}-->
+    </div>
+</ion-content>

@@ -1,0 +1,107 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref='/home-page-tabs/home-page'></ion-back-button>
+        </ion-buttons>
+        <ion-title>Appointment Page</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+    <!--    <ion-card *ngFor="let app of appointmentList">-->
+    <!--        <ion-card-header>-->
+    <!--            <ion-card-subtitle>Appointment ID : {{app.name}}</ion-card-subtitle>-->
+    <!--            <ion-card-title>{{app.physician_id[1]}}</ion-card-title>-->
+    <!--            <ion-card-subtitle>Date : {{app.create_date}}</ion-card-subtitle>-->
+    <!--            <ion-card-subtitle *ngIf="app.schedule_slot_id[1]">Appointment-->
+    <!--                : {{app.schedule_slot_id[1]}}</ion-card-subtitle>-->
+    <!--            <ion-card-subtitle>State : {{app.state}}</ion-card-subtitle>-->
+    <!--        </ion-card-header>-->
+    <!--    </ion-card>-->
+    <ion-segment [(ngModel)]="segmentState" color="success">
+
+        <ion-segment-button value="currentAppointment">
+            Current
+        </ion-segment-button>
+        <ion-segment-button value="pastAppointments">
+            Past
+        </ion-segment-button>
+
+
+    </ion-segment>
+
+
+    <div [ngSwitch]="segmentState">
+        <div *ngSwitchCase="'pastAppointments'" class="animate__animated animate__fadeIn">
+            <ion-card *ngFor="let app of pastAppointmentList">
+                <ion-card-header>
+                    <ion-card-subtitle>Appointment ID : {{app.name}}</ion-card-subtitle>
+                    <ion-card-title>{{app.physician_id[1]}}</ion-card-title>
+                    <ion-card-subtitle>Date : {{app.create_date}}</ion-card-subtitle>
+                    <ion-card-subtitle *ngIf="app.schedule_slot_id[1]">Appointment
+                        : {{app.schedule_slot_id[1]}}</ion-card-subtitle>
+                    <ion-card-subtitle>State : {{app.state}}</ion-card-subtitle>
+                    <ion-card-subtitle class="ion-text-center rating-stars">
+                        <ion-icon name="star" [ngClass]="{'active': app.appointment_rate >= 1}" (click)="changeRate(app.id, 1)"></ion-icon>
+                        <ion-icon name="star" [ngClass]="{'active': app.appointment_rate >= 2}" (click)="changeRate(app.id, 2)"></ion-icon>
+                        <ion-icon name="star" [ngClass]="{'active': app.appointment_rate >= 3}" (click)="changeRate(app.id, 3)"></ion-icon>
+                        <ion-icon name="star" [ngClass]="{'active': app.appointment_rate >= 4}" (click)="changeRate(app.id, 4)"></ion-icon>
+                        <ion-icon name="star" [ngClass]="{'active': app.appointment_rate >= 5}" (click)="changeRate(app.id, 5)"></ion-icon>
+                    </ion-card-subtitle>
+                </ion-card-header>
+            </ion-card>
+            <ion-card *ngIf="!appointmentList">
+                <ion-card-header>
+                    <ion-card-subtitle>
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-card-subtitle>
+                    <ion-card-title>
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-card-title>
+                    <ion-card-subtitle>
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-card-subtitle>
+                    <ion-card-subtitle>
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-card-subtitle>
+                    <ion-card-subtitle>
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-card-subtitle>
+                </ion-card-header>
+            </ion-card>
+        </div>
+
+        <div *ngSwitchCase="'currentAppointment'" class="animate__animated animate__fadeIn">
+            <ion-card *ngFor="let app of currentAppointmentList">
+                <ion-card-header>
+                    <ion-card-subtitle>Appointment ID : {{app.name}}</ion-card-subtitle>
+                    <ion-card-title>{{app.physician_id[1]}}</ion-card-title>
+                    <ion-card-subtitle>Date : {{app.create_date}}</ion-card-subtitle>
+                    <ion-card-subtitle *ngIf="app.schedule_slot_id[1]">Appointment
+                        : {{app.schedule_slot_id[1]}}</ion-card-subtitle>
+                    <ion-card-subtitle>State : {{app.state}}</ion-card-subtitle>
+                </ion-card-header>
+            </ion-card>
+            <ion-card *ngIf="!appointmentList">
+                <ion-card-header>
+                    <ion-card-subtitle>
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-card-subtitle>
+                    <ion-card-title>
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-card-title>
+                    <ion-card-subtitle>
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-card-subtitle>
+                    <ion-card-subtitle>
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-card-subtitle>
+                    <ion-card-subtitle>
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-card-subtitle>
+                </ion-card-header>
+            </ion-card>
+        </div>
+
+    </div>
+</ion-content>

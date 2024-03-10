@@ -1,0 +1,74 @@
+<!--<ion-content>-->
+<!--    <div class="ion-padding">-->
+<!--        <div class="container ion-text-center">-->
+<!--            <img src="assets/Images/mix%20logo.png" alt="Logo">-->
+<!--        </div>-->
+<!--        <br>-->
+<!--        <br>-->
+<!--        <ion-button expand="block" color="success" (click)="goToSearchBySpecialtyAndArea()">-->
+<!--            <ion-icon name="git-network-outline" slot="start"></ion-icon>-->
+<!--            Search By Specialty And Area-->
+<!--            <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>-->
+<!--        </ion-button>-->
+<!--        <br>-->
+<!--        <ion-button expand="block" color="success" (click)="goToSearchByDoctorName()">-->
+<!--            <ion-icon name="person-outline" slot="start"></ion-icon>-->
+<!--            Search By Doctor Name-->
+<!--            <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>-->
+<!--        </ion-button>-->
+<!--    </div>-->
+<!--</ion-content>-->
+
+
+<ion-header class="ion-no-border" class="ion-no-border">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref='/home-page-tabs/home-page'></ion-back-button>
+        </ion-buttons>
+        <ion-title>Search In {{locationResults}}</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <div class="ion-padding">
+        <ion-row>
+            <ion-col size="12">
+                <div class="search-bar">
+                    <ion-searchbar #search (ionChange)="searchDoctorSpec($event)"></ion-searchbar>
+                    <!--                    <div class="search-bar-buttons">-->
+                    <!--                        <ion-grid>-->
+                    <!--                            <ion-row>-->
+                    <!--                                <ion-col size="6">-->
+                    <!--                                    <ion-button (click)="goToFilterPage()" expand="block" size="small" fill="outline"-->
+                    <!--                                                color="success">-->
+                    <!--                                        <ion-icon name="filter-outline"></ion-icon>-->
+                    <!--                                    </ion-button>-->
+                    <!--                                </ion-col>-->
+                    <!--                                <ion-col size="6">-->
+                    <!--                                    <ion-button (click)="goToFilterLocationGPSPage()" expand="block" size="small"-->
+                    <!--                                                fill="outline" color="success">-->
+                    <!--                                        <ion-icon name="location-outline"></ion-icon>-->
+                    <!--                                    </ion-button>-->
+                    <!--                                </ion-col>-->
+                    <!--                            </ion-row>-->
+                    <!--                        </ion-grid>-->
+                    <!--                    </div>-->
+                </div>
+            </ion-col>
+        </ion-row>
+
+        <div *ngFor="let doctor of searchService.searchDoctors">
+            <app-card [doctorData]="doctor" (favorite)="onFavoriteDoctor(doctor)"
+                      (removeFavorite)="onRemoveFavoriteDoctor(doctor)"></app-card>
+        </div>
+    </div>
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button (click)="goToFilterPage()" color="success">
+            <ion-icon name="search-outline"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+    <ion-fab vertical="bottom" horizontal="start" slot="fixed">
+        <ion-fab-button (click)="goToFilterLocationGPSPage()" color="success">
+            <ion-icon name="location-outline"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+</ion-content>

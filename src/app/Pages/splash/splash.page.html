@@ -1,0 +1,67 @@
+<ion-content>
+    <!--    <div class="container ion-text-center">-->
+    <!--        <img src="assets/Images/mix%20logo.png" alt="">-->
+    <!--    </div>-->
+    <ion-slides pager="false" #slides>
+
+        <ion-slide>
+            <div class="container ion-text-center">
+                <img src="assets/Images/mix%20logo.png" alt="Logo">
+            </div>
+
+            <ion-button fill="clear" color="success" class="ion-text-right" (click)="slides.slideTo(1)">
+                Continue
+            </ion-button>
+        </ion-slide>
+
+        <ion-slide>
+            <img src="assets/Images/Group 768.png" alt="Logo">
+            <h2>Find your own doctor</h2>
+            <p>You can search for the doctor you want in the appropriate area.</p>
+            <ion-grid>
+                <ion-row>
+                    <ion-col>
+                        <ion-button fill="clear" color="dark" class="ion-text-right" (click)="closeSplashScreen()">
+                            Skip
+                        </ion-button>
+                    </ion-col>
+                    <ion-col>
+                        <ion-button color="success" fill="clear" (click)="slides.slideTo(2)">
+                            Next
+                        </ion-button>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+
+        </ion-slide>
+
+        <ion-slide>
+            <img src="assets/Images/Map light.png" alt="Logo">
+            <h2>From the Nearest</h2>
+            <p>Find the best services through location based services</p>
+            <ion-grid>
+                <ion-row>
+                    <ion-col>
+                        <ion-button fill="clear" color="dark" class="ion-text-right" (click)="closeSplashScreen()">
+                            Skip
+                        </ion-button>
+                    </ion-col>
+                    <ion-col>
+                        <ion-button fill="clear" class="ion-text-right" color="success" (click)="slides.slideTo(3)">
+                            Next
+                        </ion-button>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-slide>
+
+        <ion-slide>
+            <img src="assets/Images/Group 769.png" alt="Logo">
+            <h2>Instant Notifications?</h2>
+            <p>keeps you constantly updated on your appointments</p>
+            <div class="ion-padding">
+                <ion-button expand="block" color="success" (click)="closeSplashScreen()">Get Started</ion-button>
+            </div>
+        </ion-slide>
+    </ion-slides>
+</ion-content>

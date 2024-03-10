@@ -1,0 +1,25 @@
+<ion-tabs>
+
+    <ion-tab-bar slot="bottom">
+        <ion-tab-button tab="appointment-page" *ngIf="userData">
+            <ion-icon name="newspaper-outline"></ion-icon>
+            <ion-label>{{"Appointments" | translate}}</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button tab="home-page">
+            <ion-icon name="home-outline"></ion-icon>
+            <ion-label>{{'Home' | translate}}</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button tab="search-page">
+            <ion-icon name="search-outline"></ion-icon>
+            <ion-label>{{'Search' | translate}}</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button tab="more-page" *ngIf="userData">
+            <ion-icon name="ellipsis-horizontal-outline"></ion-icon>
+            <ion-label>{{'More' | translate}}</ion-label>
+        </ion-tab-button>
+    </ion-tab-bar>
+
+</ion-tabs>

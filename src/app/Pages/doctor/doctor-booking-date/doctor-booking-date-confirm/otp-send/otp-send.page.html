@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+        <ion-back-button defaultHref='/home-page-tabs/home-page'></ion-back-button>
+    </ion-buttons>
+    <ion-title>Verify Reservation</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="verify" *ngIf="otpRequest">
+    <ion-item>
+      <ion-label position="stacked">First Name</ion-label>
+      <ion-input [(ngModel)]="data.firstName"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Last Name</ion-label>
+      <ion-input [(ngModel)]="data.lastName"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Email</ion-label>
+      <ion-input [(ngModel)]="data.email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Health Pay (Mobile)</ion-label>
+      <ion-input [(ngModel)]="data.mobile"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Powered By</ion-label>
+      <ion-select [(ngModel)]="data.poweredBy">
+        <ion-select-option *ngFor="let item of poweredBy" [value]="item.id">
+          {{item.name}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-button color="success" expand="block" (click)="send_otp()">Request OTP</ion-button>
+  </div>
+  <div class="verify" *ngIf="otpForm">
+    <ion-item>
+      <ion-label position="stacked">Otp</ion-label>
+      <ion-input [(ngModel)]="otp"></ion-input>
+    </ion-item>
+    <ion-button color="success" (click)="confirm_otp()">Confirm OTP</ion-button>
+  </div>
+
+
+</ion-content>

@@ -1,0 +1,50 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref='/home-page-tabs/home-page'></ion-back-button>
+        </ion-buttons>
+        <ion-title>Appointment Date</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-card class="ion-padding">
+        <ion-text color="success">
+            <h5>Select Appointment Date</h5>
+        </ion-text>
+        <ion-text color="dark">
+            <p>Select Appointment Date</p>
+        </ion-text>
+        <ion-slides [options]="slideDoctorOpts">
+            <ion-slide *ngFor="let slot of slotsData" (click)="onClick(slot.slot[0])">
+                <ion-card
+                        [ngClass]="{'special-box ion-text-center active': onSelectedSlot(slot.slot[0]), 'special-box ion-text-center': !onSelectedSlot(slot.slot[0])}">
+                    <ion-card-content>
+                        <h4>{{slot.slot[0].display_name | date: 'd'}}</h4>
+                        <h3>{{slot.slot[0].display_name | date: 'EE'}}</h3>
+                    </ion-card-content>
+                </ion-card>
+            </ion-slide>
+        </ion-slides>
+    </ion-card>
+    <ion-card class="ion-padding animate__animated animate__fade" *ngIf="slotLines">
+        <ion-text color="success">
+            <h5>Select Appointment Time</h5>
+        </ion-text>
+        <ion-grid>
+            <ion-row>
+                <ion-col size="4" *ngFor="let line of slotLines" (click)="onclickSlotLine(line)">
+                    <div
+                            [ngClass]="{'bg-secondary-active': onSelectedSlotLine(line), 'bg-secondary': !onSelectedSlotLine(line)}"
+                    >
+                        {{line.name}}
+                    </div>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+        <ion-button expand="block" color="success" (click)="onConfirmBooking()" [disabled]="!selectedSlotLine">
+            Continue
+        </ion-button>
+    </ion-card>
+
+</ion-content>

@@ -1,0 +1,152 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import '~@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap');
+@import "~animate.css/animate.css";
+
+// .tab-selected {
+//   color: var(--ion-color-success);
+// }
+ion-title{
+  font-size:13px;
+}
+ion-tab-button {
+  --ripple-color: var(--ion-color-success);
+  // --color: var(--ion-color-success);
+  --color-selected: var(--ion-color-success);
+}
+
+ion-tab-button.tab-selected {
+  --ripple-color: var(--ion-color-success);
+  --color: var(--ion-color-success);
+  --color-selected: var(--ion-color-success);
+}
+
+.searchbar-input.sc-ion-searchbar-md {
+  border-radius: 10px;
+  box-shadow: 0px 0px 12px 2px #dedede;
+}
+
+.active-star {
+  color: #e0bb2e;
+}
+
+* {
+  font-family: 'Cairo', Roboto, "Helvetica Neue", sans-serif;
+}
+
+//:root {
+//  --ion-safe-area-top: 20px;
+//  --ion-safe-area-bottom: 22px;
+//}
+
+.popup {
+  position: fixed;
+  background: #0009;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  z-index: 999999999999999999999999999999;
+  overflow: hidden;
+  left: 0;
+
+  .popup-content {
+    position: relative;
+    margin-top: 30px;
+    background: #fff;
+    border-radius: 20px;
+    //text-align: center;
+    padding: 20px 20px;
+
+    .close-button {
+      position: absolute;
+      left: 20px;
+      top: 15px;
+    }
+
+    h3, p {
+      margin: 0
+    }
+
+    ion-icon {
+      font-size: 30px;
+      color: var(--ion-color-success);
+    }
+
+    ion-img {
+      width: 200px;
+      margin: auto;
+    }
+  }
+
+}
+
+.stick-bottom {
+  position: fixed;
+  left: 10px;
+  right: 10px;
+  width: 93%;
+  z-index: 9999999;
+}
+
+ion-back-button {
+  display: block;
+}
+ion-button{
+  --box-shadow:none;
+  --border-radius: 10px;
+  --ion-padding: 20px 0;
+  text-transform: unset;
+  height: 40px;
+}
+ion-button ion-icon{
+  margin-right: 10px;
+}
+.facebook_bg{
+  --background: #475993;
+}
+.google_bg{
+  --background: #bf360c;
+}
+ion-label {
+  font-size: 13px !important;
+}
+p{
+  font-size: 13px;
+}
+ion-card{
+  --border-radius: 10px;
+}
+.f13 {
+  font-size: 13px;
+}
+.rate-button {
+  width: unset !important;
+  height: unset !important;
+  ion-icon{
+    margin-right: 0 !important;
+  }
+}

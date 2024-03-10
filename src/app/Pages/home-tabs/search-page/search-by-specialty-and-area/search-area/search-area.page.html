@@ -1,0 +1,23 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar color="success">
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="home-page-tabs/search-page/search-by-specialty-and-area"></ion-back-button>
+        </ion-buttons>
+        <ion-title>Select City</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="ion-padding">
+        <ion-searchbar  #search (ionChange)="searchCountryState($event)"></ion-searchbar>
+        <ion-list>
+            <ion-item *ngIf="locationResults"
+                      routerLink="/home-page-tabs/search-page/search-by-specialty-and-area/search-area/search-in-area">
+                <ion-label>Your Detect Location In {{locationResults}}</ion-label>
+            </ion-item>
+            <ion-item *ngFor="let state of searchedItem" (click)="onClickToCity(state.id)">
+                <ion-label>{{state.display_name}}</ion-label>
+            </ion-item>
+        </ion-list>
+    </div>
+</ion-content>

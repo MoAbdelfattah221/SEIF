@@ -1,0 +1,73 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref='/home-page-tabs/home-page'></ion-back-button>
+        </ion-buttons>
+        <ion-buttons slot="start">
+            <ion-back-button color="success" defaultHref="home-page-tabs/more-page"></ion-back-button>
+        </ion-buttons>
+        <ion-title>Settings</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+    <ion-card>
+        <!--        <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y" class="ion-margin-top">-->
+        <ion-card-header>
+            <ion-card-subtitle>Profile Settings</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+            <form #editProfile="ngForm" (submit)="onSubmit()">
+                <ion-item>
+                    <ion-label position="floating">Name</ion-label>
+                    <ion-input name="name" [(ngModel)]="userService.userEditProfile.name" required
+                               type="text"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="floating">
+                        Email
+                    </ion-label>
+                    <ion-input name="email" [(ngModel)]="userService.userEditProfile.email" #email="ngModel" ngvemail
+                               required
+                               type="email"></ion-input>
+
+                    <ion-item *ngIf="email.errors?.email">
+                        <ion-icon color="danger" slot="start" name="alert-circle-outline"></ion-icon>
+                        <ion-label color="danger">Must Be An Email.</ion-label>
+                    </ion-item>
+                    <!--                    <ion-text color="danger" *ngIf="email.errors?.email">-->
+                    <!--                        <h6>-->
+                    <!--                            <ion-icon name="alert-circle-outline"></ion-icon>-->
+                    <!--                            Must Be An Email.-->
+                    <!--                        </h6>-->
+                    <!--                    </ion-text>-->
+
+                </ion-item>
+                <ion-item>
+                    <ion-label position="floating">
+                        Address
+                    </ion-label>
+                    <ion-input name="street" [(ngModel)]="userService.userEditProfile.street" required
+                               type="text"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="floating">
+                        Phone
+                    </ion-label>
+                    <ion-input name="phone" [(ngModel)]="userService.userEditProfile.phone" required
+                               #phone="ngModel"
+                               [pattern]="'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\\s\\./0-9]*$'"
+                               type="text"></ion-input>
+                    <ion-item *ngIf="phone.errors?.pattern">
+                        <ion-icon color="danger" slot="start" name="alert-circle-outline"></ion-icon>
+                        <ion-label color="danger">It Must Be A Number.</ion-label>
+                    </ion-item>
+                </ion-item>
+                <br>
+                <ion-button expand="full" [disabled]="!editProfile.valid" color="success" type="submit">Save
+                </ion-button>
+
+            </form>
+        </ion-card-content>
+    </ion-card>
+</ion-content>

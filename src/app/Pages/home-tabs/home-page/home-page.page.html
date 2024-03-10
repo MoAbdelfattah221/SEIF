@@ -1,0 +1,167 @@
+<ion-content>
+    <!--    Home Header-->
+    <br>
+    <div class="home-header">
+        <ion-grid>
+            <ion-row>
+                <ion-col class="ion-text-center">
+                    <h3 class="ion-no-margin">EL SEIF HEALTH CARE</h3>
+                    <p class="ion-no-margin">Your Safety .. is Our Responsibility</p>
+                </ion-col>
+                <ion-col size="3" class="ion-text-right ion-padding-top sign-in-link" *ngIf="!showLogged">
+                    <a routerLink="/auth-page">Sign in
+                        <ion-icon name="arrow-forward-outline"></ion-icon>
+                    </a>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
+    <!--    Home Recommended Slider-->
+    <div class="home-recommended-slider">
+        <div class="ion-padding">
+            <h3 class="section-title">Recommended <span class="see-all"><a routerLink="/home-page-tabs/search-page/">See
+                        All</a></span>
+            </h3>
+            <ion-slides [options]="slideOpts" *ngIf="searchService.searchDoctors">
+                <ion-slide *ngFor="let doctor of searchService.searchDoctors">
+                    <ion-card class="card-doctor">
+                        <div (click)="onNavigate(doctor)">
+                            <ion-grid>
+                                <ion-row>
+                                    <ion-col size="3" class="ion-no-padding">
+                                        <img style="border-radius: 50%; height: 60px; width: 60px"
+                                            [src]="'data:image/png;base64,' + doctor.image_1920" [alt]="doctor.name">
+                                    </ion-col>
+                                    <ion-col size="9" class="ion-no-padding">
+                                        <div class="doctor-details">
+                                            <ion-label class="card-doctor-name">{{doctor.name}}</ion-label>
+                                            <ion-card-subtitle>{{doctor.specialty[1]}}</ion-card-subtitle>
+                                        </div>
+                                    </ion-col>
+                                    <ion-col size="12" class="ion-no-padding">
+                                        <div class="stars">
+                                            <ionic-rating-component #rating
+                                                                    activeIcon="star"
+                                                                    defaultIcon="star-outline"
+                                                                    activeColor="#e0bb2e"
+                                                                    defaultColor="#aaaaaa"
+                                                                    readonly="true"
+                                                                    rating="{{doctor.rate_overall}}"
+                                                                    fontSize="15px"
+                                            >
+                                            </ionic-rating-component>
+                                            ({{doctor.count_rate}} Rating From Visitors)
+                                        </div>
+                                    </ion-col>
+                                </ion-row>
+                                <ion-row class="meta-details">
+                                    <ion-col size="6" class="ion-no-padding ion-text-left">
+                                        <ion-icon name="location-outline" color="success"></ion-icon>
+                                            {{doctor.state_id[1]}}
+                                            <!--                <ion-text color="success">({{drLocationDistance}})</ion-text>-->
+                                    </ion-col>
+                                    <ion-col size="6" class="ion-no-padding ion-text-right">
+                                        <ion-icon name="cash-outline" color="success"></ion-icon>
+                                            Fees
+                                            <span color="success">({{doctor.consul_fee}})</span>
+                                    </ion-col>
+                                </ion-row>
+                            </ion-grid>
+                        </div>
+                    </ion-card>
+                </ion-slide>
+            </ion-slides>
+            <ion-card *ngIf="!searchService.searchDoctors" class="recommend-card" style="width: 90%">
+                <ion-card-header>
+                    <!-- <ion-img style="height: 200px; width: 100%"
+                             [src]="'data:image/png;base64,' + doctor.image_1920"></ion-img> -->
+                    <ion-skeleton-text animated style="height: 200px;"></ion-skeleton-text>
+
+                </ion-card-header>
+                <ion-card-content>
+                    <ion-grid>
+                        <ion-row>
+                            <ion-col size="6" class="ion-text-left">
+                                <ion-skeleton-text animated></ion-skeleton-text>
+
+                                <ion-skeleton-text animated></ion-skeleton-text>
+
+                            </ion-col>
+                            <ion-col size="6" class="ion-text-right">
+                                <ion-skeleton-text animated></ion-skeleton-text>
+
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+                </ion-card-content>
+                <div class="card-footer">
+                    <p>
+                        <ion-icon name="navigate-circle-outline"></ion-icon>
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </p>
+                </div>
+            </ion-card>
+        </div>
+    </div>
+    <!--    Home Main Slider-->
+    <div class="home-slider" *ngIf="searchService.favoriteDoctorsFiltered.length > 0">
+
+        <div class="ion-padding">
+            <h3 class="section-title">My Favorites <span class="see-all"><a
+                    routerLink="/home-page-tabs/more-page/favorite-doctors">See All</a></span>
+            </h3>
+            <ion-slides *ngIf="searchService.searchDoctors" [options]="slideOpts">
+                <ion-slide *ngFor="let doctor of searchService.getDoctorFavorites()">
+                    <div class="slide-image" (click)="onNavigate(doctor)">
+                        <ion-img [src]="'data:image/png;base64,' + doctor.image_1920"></ion-img>
+                        <div class="slide-description">
+                            <h3>{{doctor.name}}</h3>
+                            <p>
+                                <ion-icon name="navigate-circle-outline"></ion-icon>
+                                <strong>{{doctor.state_id[1]}}</strong>
+                            </p>
+                        </div>
+                    </div>
+                </ion-slide>
+            </ion-slides>
+            <div *ngIf="!searchService.searchDoctors" class="slide-image">
+                <ion-skeleton-text animated style="height: 200px;"></ion-skeleton-text>
+                <!-- <div class="slide-description" style="width: 90%">
+                    <ion-skeleton-text animated></ion-skeleton-text>
+                    <p>
+                        <ion-icon name="navigate-circle-outline"></ion-icon>
+                        <ion-skeleton-text animated></ion-skeleton-text>
+                    </p>
+                </div> -->
+            </div>
+        </div>
+    </div>
+
+    <!--    Home Recommended Slider-->
+    <div class="home-specialties-slider">
+        <div class="ion-padding">
+            <h3 class="section-title">Specialties <span class="see-all"><a
+                    routerLink="/home-page-tabs/search-page/search-by-specialty-and-area">See All</a></span></h3>
+            <ion-slides [options]="slideCategoryOpts">
+                <ion-slide *ngFor="let speciality of doctorSpecialties">
+                    <ion-card style="width: 100%" class="special-box ion-text-center"
+                              (click)="searchForDoctorBySpeciality(speciality.id)">
+                        <ion-card-content>
+                            <!--                            <ion-icon name="heart-outline"></ion-icon>-->
+                            <img [src]="speciality.image" style="width: 50px; height: 50px" alt="">
+                            <h3>{{speciality.display_name}}</h3>
+                        </ion-card-content>
+                    </ion-card>
+                </ion-slide>
+            </ion-slides>
+        </div>
+    </div>
+
+    <!--    Home Button-->
+    <ion-card class="home-button">
+        <ion-card-content>
+            <h3>EL SEIF HEALTH CARE</h3>
+            <p>Your Safety ... is Our Responsibility</p>
+        </ion-card-content>
+    </ion-card>
+</ion-content>

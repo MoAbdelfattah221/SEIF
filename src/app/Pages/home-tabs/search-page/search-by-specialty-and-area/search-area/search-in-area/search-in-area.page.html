@@ -1,0 +1,21 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar color="success">
+        <ion-buttons slot="start">
+            <ion-back-button
+                    defaultHref="home-page-tabs/search-page/search-by-specialty-and-area/search-area"></ion-back-button>
+        </ion-buttons>
+        <ion-title>Select Area</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="ion-padding">
+        <ion-searchbar #search (ionChange)="searchInArea($event)"></ion-searchbar>
+        <ion-list>
+            <ion-item *ngFor="let place of searchedItem"
+                      routerLink="/home-page-tabs/search-page/search-by-specialty-and-area/search-area/search-in-area/search-result-of-doctors">
+                <ion-label>{{place.display_name}}</ion-label>
+            </ion-item>
+        </ion-list>
+    </div>
+</ion-content>

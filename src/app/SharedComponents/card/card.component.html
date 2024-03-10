@@ -1,0 +1,77 @@
+<ion-card>
+    <div class="card-doctor" (click)="onBooking()">
+        <ion-grid>
+            <ion-row>
+                <ion-col size="3" class="ion-no-padding">
+                    <img style="border-radius: 50%; height: 60px; width: 60px"
+                         [src]="'data:image/png;base64,' + doctorData.image_1920" [alt]="doctorData.name">
+                </ion-col>
+                <ion-col size="9" class="ion-no-padding">
+                    <div class="doctor-details">
+                        <ion-label class="card-doctor-name">{{doctorData.name}}</ion-label>
+                        <ion-card-subtitle>{{doctorData.specialty[1]}}</ion-card-subtitle>
+                    </div>
+                </ion-col>
+                <ion-col size="12" class="ion-no-padding">
+                    <div class="stars">
+                        <ionic-rating-component #rating
+                                                activeIcon="star"
+                                                defaultIcon="star-outline"
+                                                activeColor="#e0bb2e"
+                                                defaultColor="#aaaaaa"
+                                                readonly="true"
+                                                rating="{{doctorData.rate_overall}}"
+                                                fontSize="15px"
+                        >
+                        </ionic-rating-component>
+                        ({{doctorData.count_rate}} Rating From Visitors)
+                    </div>
+                </ion-col>
+            </ion-row>
+            <ion-row class="meta-details">
+                <ion-col size="6" (click)="onBooking()" class="ion-no-padding ion-text-left">
+                    <ion-icon name="location-outline" color="success"></ion-icon>
+                        {{doctorData.state_id[1]}}
+                        <!--                <ion-text color="success">({{drLocationDistance}})</ion-text>-->
+                </ion-col>
+                <ion-col size="6" (click)="onBooking()" class="ion-no-padding ion-text-right">
+                    <ion-icon name="cash-outline" color="success"></ion-icon>
+                        Fees
+                        <span color="success">({{doctorData.consul_fee}})</span>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
+
+    <ion-card-content class="ion-no-padding">
+        <div class="item-list card-doctor-buttons">
+            <!--            <ion-icon name="time-outline" slot="start" color="success"></ion-icon>-->
+            <!--            <ion-label>-->
+            <!--                Waiting Time-->
+            <!--                <ion-text color="success">{{drWaitingTime}}</ion-text>-->
+            <!--            </ion-label>-->
+            <div style="margin-top: 15px">
+                <ion-button class="book-now" fill="outline" color="success" *ngIf="userData" (click)="onBooking()">
+                    <ion-icon name="bookmark-outline"></ion-icon>
+                    Book
+                </ion-button>
+                <ion-button class="book-now" color="success" *ngIf="!userData" (click)="onLogin()">
+                    Login
+                </ion-button>
+                <ion-button class="book-now" fill="outline" color="danger"
+                            *ngIf="userData && doctorData.isFavorite === false" (click)="onClickFavorite()">
+                    <!--                    <ion-icon name="heart"></ion-icon>-->
+                    <ion-icon name="heart-outline"></ion-icon>
+                    Add To Favorite
+                </ion-button>
+                <ion-button class="book-now" fill="outline" color="danger"
+                            *ngIf="userData && doctorData.isFavorite === true" (click)="onClickRemoveFavorite()">
+                    <ion-icon name="heart"></ion-icon>
+                    <!--                                        <ion-icon name="heart-outline"></ion-icon>-->
+                    Remove From Favorite
+                </ion-button>
+            </div>
+
+        </div>
+    </ion-card-content>
+</ion-card>

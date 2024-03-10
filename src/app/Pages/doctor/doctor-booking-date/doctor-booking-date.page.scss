@@ -1,0 +1,38 @@
+ion-slides {
+  height: 100%;
+
+  .active {
+    background: #309a31;
+    color: #fff !important;
+  }
+
+  .special-box {
+    border-radius: 20px;
+    color: #309a31;
+
+    p {
+      font-size: 20px;
+    }
+  }
+}
+
+.bg-secondary {
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.bg-secondary-active {
+  background-color: #309a31;
+  color: #fff !important;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.stick-bottom {
+  position: fixed;
+  left: 10px;
+  right: 10px;
+  width: 93%;
+  z-index: 20;
+}

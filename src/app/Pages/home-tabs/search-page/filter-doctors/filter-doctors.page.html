@@ -1,0 +1,141 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref='/home-page-tabs/home-page'></ion-back-button>
+        </ion-buttons>
+        <ion-title>Filter</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+    <ion-segment [(ngModel)]="segment" color="success">
+        <ion-segment-button value="filter">
+            Filter
+        </ion-segment-button>
+        <ion-segment-button value="sort">
+            Sort
+        </ion-segment-button>
+    </ion-segment>
+
+    <form (submit)="onSubmitFilter()">
+        <div [ngSwitch]="segment">
+            <ion-card *ngSwitchCase="'filter'" class="animate__animated animate__fadeIn">
+                <ion-card-content>
+                    <ion-item>
+                        <ion-label>Availability</ion-label>
+                        <ion-select [(ngModel)]="searchService.searchQuery.availability" name="availability">
+                            <ion-select-option [value]="'Any Day'">Any Day</ion-select-option>
+                            <ion-select-option [value]="'Today'">Today</ion-select-option>
+                            <ion-select-option [value]="'Tomorrow'">Tomorrow</ion-select-option>
+                        </ion-select>
+                    </ion-item>
+                    <!--                    <ion-item>-->
+                    <!--                        <ion-label>Title</ion-label>-->
+                    <!--                        <ion-select>-->
+                    <!--                            <ion-select-option [value]="'Professional'">Professional</ion-select-option>-->
+                    <!--                            <ion-select-option [value]="'Specialist'">Specialist</ion-select-option>-->
+                    <!--                        </ion-select>-->
+                    <!--                    </ion-item>-->
+                    <!--                    <hr>-->
+                    <ion-item>
+                        <ion-label>Gender</ion-label>
+                        <ion-select [(ngModel)]="searchService.searchQuery.gender" name="gender">
+                            <ion-select-option [value]="'male'">Male</ion-select-option>
+                            <ion-select-option [value]="'female'">Female</ion-select-option>
+                        </ion-select>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label>Specialties</ion-label>
+                        <ion-select [(ngModel)]="searchService.searchQuery.specialty" name="specialty">
+                            <ion-select-option *ngFor="let sep of doctorSpecialties" [value]="sep.id">
+                                {{sep.display_name}}
+                            </ion-select-option>
+                        </ion-select>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label>State</ion-label>
+                        <ion-select [(ngModel)]="searchService.searchQuery.state_id" name="state_id"
+                            (ionChange)="getPlaces($event.target.value)">
+                            <ion-select-option *ngFor="let country of countryStates" [value]="country.id">
+                                {{country.display_name}}</ion-select-option>
+                        </ion-select>
+                    </ion-item>
+                    <ion-item>
+
+                        <ion-label>Area</ion-label>
+                        <ion-select [(ngModel)]="searchService.searchQuery.city_id" name="city_id" multiple>
+                            <ion-select-option *ngFor="let place of places" [value]="place.id">{{place.display_name}}
+                            </ion-select-option>
+                        </ion-select>
+                    </ion-item>
+                    <div class="ion-text-center">
+                        <ion-label>Rating</ion-label>
+                        <ionic-rating-component #rating activeIcon="star" defaultIcon="star-outline"
+                            activeColor="#006600" defaultColor="#aaaaaa" readonly="false" rating="0" fontSize="32px"
+                            (ratingChanged)="onRatingChange($event)">
+                        </ionic-rating-component>
+                    </div>
+                    <div class="ion-text-center">
+                        <ion-label class="ion-text-center">Examination Fees</ion-label>
+                        <ion-item>
+                            <ion-note color="success" slot="start">{{rangeValue.lower}}</ion-note>
+                            <ion-note color="success" slot="end">{{rangeValue.upper}}</ion-note>
+                            <ion-range id="dual-range" dual-knobs pin color="dark" min="5" max="1000" name="rangeValue"
+                                [(ngModel)]="rangeValue">
+                            </ion-range>
+                        </ion-item>
+                    </div>
+
+                    <div class="ion-padding">
+                        <ion-button expand="block" type="submit" color="success" routerDirection=“back”>
+                            <ion-icon name="search-outline"></ion-icon>
+                            Submit
+                        </ion-button>
+                        <br>
+                        <ion-button expand="block" type="button" fill="outline" color="dark" (click)="resetFunction()">
+                            <ion-icon name="refresh-outline"></ion-icon>
+                            Reset
+                        </ion-button>
+                    </div>
+                </ion-card-content>
+            </ion-card>
+
+            <ion-card *ngSwitchCase="'sort'" class="animate__animated animate__fadeIn">
+                <ion-list>
+                    <ion-radio-group value="Recommended">
+                        <ion-item>
+                            <ion-label>Recommended</ion-label>
+                            <ion-radio slot="start" value="Recommended"></ion-radio>
+                        </ion-item>
+
+                        <ion-item>
+                            <ion-label>Price Low To High</ion-label>
+                            <ion-radio slot="start" value="Price Low To High"></ion-radio>
+                        </ion-item>
+
+                        <ion-item>
+                            <ion-label>Price High To Low</ion-label>
+                            <ion-radio slot="start" value="Price High To Low"></ion-radio>
+                        </ion-item>
+
+                        <ion-item>
+                            <ion-label>Top Rating</ion-label>
+                            <ion-radio slot="start" value="Top Rating"></ion-radio>
+                        </ion-item>
+                    </ion-radio-group>
+                </ion-list>
+                <div class="ion-padding">
+                    <ion-button expand="block" type="submit" color="success" routerDirection=“back”>
+                        <ion-icon name="search-outline"></ion-icon>
+                        Submit
+                    </ion-button>
+                    <br>
+                    <ion-button expand="block" type="button" fill="outline" color="dark" (click)="resetFunction()">
+                        <ion-icon name="refresh-outline"></ion-icon>
+                        Reset
+                    </ion-button>
+                </div>
+            </ion-card>
+        </div>
+    </form>
+</ion-content>

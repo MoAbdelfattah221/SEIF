@@ -1,0 +1,41 @@
+
+<ion-content class="ion-padding">
+    <div class="container ion-text-center">
+        <img src="assets/Images/mix%20logo.png" class="logo" alt="Logo">
+        <p class="slogan-color">Stay signed in with your account to make searching easier</p>
+    </div>
+    <form #loginF="ngForm" (submit)="logIn(loginF)">
+        <ion-item>
+            <ion-icon name="person" slot="start"></ion-icon>
+            <ion-label position="floating" class="f13">Email Or Phone Number</ion-label>
+            <ion-input [(ngModel)]="authService.loginForm.login" name="login" required type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-icon name="lock-closed" slot="start"></ion-icon>
+            <ion-label position="floating" class="f13">Password</ion-label>
+            <ion-input [(ngModel)]="authService.loginForm.password" name="password" required type="password"></ion-input>
+        </ion-item>
+        <p class="ion-text-right f13">
+            <ion-router-link color="medium" class="underline" routerLink="/auth-page/forget-password">Forget Password?
+            </ion-router-link>
+        </p>
+        <ion-button expand="block" [disabled]="!loginF.valid" color="success" type="submit">Sign In</ion-button>
+    </form>
+    <p class="ion-text-center or-line f13">Or</p>
+    <ion-button expand="block"  class="facebook_bg">
+        <ion-icon name="logo-facebook"></ion-icon>
+        Continue With Facebook
+    </ion-button>
+    <ion-button expand="block" class="google_bg">
+        <ion-icon name="logo-google"></ion-icon> 
+        Continue With Gmail
+    </ion-button>
+    <p class="ion-text-center f13">Don't Have An Account?
+        <ion-router-link color="success" class="underline" routerLink="/auth-page/registration-page">Sign Up?
+        </ion-router-link>
+    </p>
+    <p class="ion-text-center f13">Continue As
+        <ion-router-link color="success" class="underline" routerLink="/home-page-tabs/home-page">Guest?
+        </ion-router-link>
+    </p>
+</ion-content>

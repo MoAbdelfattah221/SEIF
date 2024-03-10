@@ -1,0 +1,153 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar color="success">
+        <ion-buttons slot="start">
+            <ion-back-button
+                    defaultHref="home-page-tabs/search-page/search-by-specialty-and-area/search-area/search-in-area"></ion-back-button>
+        </ion-buttons>
+        <ion-title>Searching In {{locationResults}}</ion-title>
+
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="ion-padding">
+        <ion-row>
+            <ion-col size="12">
+                <div class="search-bar">
+                    <ion-searchbar></ion-searchbar>
+                    <div class="search-bar-buttons">
+                        <ion-grid>
+                            <ion-row>
+                                <ion-col size="6">
+                                    <ion-button size="small" fill="outline" color="success"
+                                                routerLink="/home-page-tabs/search-page/search-by-specialty-and-area/search-area/search-in-area/search-result-of-doctors/filter-form">
+                                        <ion-icon name="filter-outline"></ion-icon>
+                                    </ion-button>
+                                </ion-col>
+                                <ion-col size="6">
+                                    <ion-button size="small" fill="outline" color="success">
+                                        <ion-icon name="location-outline"></ion-icon>
+                                    </ion-button>
+                                </ion-col>
+                            </ion-row>
+                        </ion-grid>
+                    </div>
+                </div>
+            </ion-col>
+        </ion-row>
+        <app-card [drName]="'Amr Mossad'" [drAvailableIn]="'9 PM'" [drLocationDistance]="'22 Km'" [drLocation]="'Haram'"
+                  [drImage]="'assets/Images/Avatar.png'"
+                  [drMoney]="'500 LE'" [drPosition]="'Dentist'" [drWaitingTime]="'10 Min'"></app-card>
+        <app-card [drName]="'Mohammed Sheref'" [drAvailableIn]="'9 PM'" [drLocationDistance]="'22 Km'"
+                  [drLocation]="'Haram'"
+                  [drImage]="'assets/Images/Avatar.png'"
+                  [drMoney]="'500 LE'" [drPosition]="'Dentist'" [drWaitingTime]="'10 Min'"></app-card>
+        <app-card [drName]="'Karem Kamel'" [drAvailableIn]="'9 PM'" [drLocationDistance]="'22 Km'"
+                  [drLocation]="'Haram'"
+                  [drImage]="'assets/Images/Avatar.png'"
+                  [drMoney]="'500 LE'" [drPosition]="'Dentist'" [drWaitingTime]="'10 Min'"></app-card>
+    </div>
+</ion-content>
+<div class="popup" *ngIf="hideMe">
+    <div class="popup-content">
+        <div class="close-button" (click)="closeModal()">
+            <ion-icon name="close-circle-outline"></ion-icon>
+        </div>
+        <br>
+        <ion-segment [(ngModel)]="segment">
+
+            <ion-segment-button value="filter">
+                Filter
+            </ion-segment-button>
+            <ion-segment-button value="sort">
+               Sort
+            </ion-segment-button>
+
+        </ion-segment>
+
+
+        <div [ngSwitch]="segment">
+            <ion-card *ngSwitchCase="'filter'">
+                <ion-card-content>
+                    <ion-label>Entity</ion-label>
+                    <ion-radio-group value="Clinic">
+                        <ion-row>
+                            <ion-col>
+                                <ion-item>
+                                    <ion-radio mode="md" value="Clinic" color="success"></ion-radio>
+                                    <ion-label>Clinic</ion-label>
+                                </ion-item>
+                            </ion-col>
+                            <ion-col>
+                                <ion-item>
+                                    <ion-radio mode="md"  value="Hospital" color="success"></ion-radio>
+                                    <ion-label>Hospital</ion-label>
+                                </ion-item>
+                            </ion-col>
+                        </ion-row>
+                    </ion-radio-group>
+                    <hr>
+                    <ion-label>Availability</ion-label>
+                    <ion-radio-group value="Any Day">
+                        <ion-row>
+                            <ion-col>
+                                <ion-item>
+                                    <ion-radio mode="md" value="Any Day" color="success"></ion-radio>
+                                    <ion-label>Any Day</ion-label>
+                                </ion-item>
+                            </ion-col>
+                            <ion-col>
+                                <ion-item>
+                                    <ion-radio mode="md"  value="Today" color="success"></ion-radio>
+                                    <ion-label>Today</ion-label>
+                                </ion-item>
+                            </ion-col>
+                            <ion-col>
+                                <ion-item>
+                                    <ion-radio mode="md"  value="Tomorrow" color="success"></ion-radio>
+                                    <ion-label>Tomorrow</ion-label>
+                                </ion-item>
+                            </ion-col>
+                        </ion-row>
+                    </ion-radio-group>
+                    <hr>
+                    <ion-label>Examination Fees</ion-label>
+                    <ion-item>
+                        <ion-note color="success" slot="start">{{rangeValue.lower}}</ion-note>
+                        <ion-note color="success" slot="end">{{rangeValue.upper}}</ion-note>
+                        <ion-range id="dual-range" dual-knobs pin color="dark" min="5" max="1000" [(ngModel)]="rangeValue">
+
+                        </ion-range>
+                    </ion-item>
+                    <ion-label>Gender</ion-label>
+                    <ion-radio-group value="Male">
+                        <ion-row>
+                            <ion-col>
+                                <ion-item>
+                                    <ion-radio mode="md" value="Male" color="success"></ion-radio>
+                                    <ion-label>Male</ion-label>
+                                </ion-item>
+                            </ion-col>
+                            <ion-col>
+                                <ion-item>
+                                    <ion-radio mode="md"  value="Female" color="success"></ion-radio>
+                                    <ion-label>Female</ion-label>
+                                </ion-item>
+                            </ion-col>
+                        </ion-row>
+                    </ion-radio-group>
+                    <hr>
+                </ion-card-content>
+            </ion-card>
+
+            <ion-card *ngSwitchCase="'sort'">
+                <ion-card-header>
+                    Sort
+                </ion-card-header>
+                <ion-card-content>
+                    Sort
+                </ion-card-content>
+            </ion-card>
+        </div>
+    </div>
+</div>

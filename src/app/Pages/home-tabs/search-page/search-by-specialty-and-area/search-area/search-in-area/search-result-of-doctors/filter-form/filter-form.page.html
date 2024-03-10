@@ -1,0 +1,153 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref='/home-page-tabs/home-page'></ion-back-button>
+        </ion-buttons>
+        <ion-title>Filter Doctors</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+    <ion-segment [(ngModel)]="segment">
+
+        <ion-segment-button value="filter">
+            Filter
+        </ion-segment-button>
+        <ion-segment-button value="sort">
+            Sort
+        </ion-segment-button>
+
+    </ion-segment>
+
+    <form (submit)="onSubmitFilter()">
+        <div [ngSwitch]="segment">
+            <ion-card *ngSwitchCase="'filter'">
+                <ion-card-content>
+                    <ion-label>Entity</ion-label>
+                    <ion-radio-group value="Clinic">
+                        <ion-row>
+                            <ion-col>
+                                <ion-item>
+                                    <ion-radio mode="md" value="Clinic" color="success"></ion-radio>
+                                    <ion-label>Clinic</ion-label>
+                                </ion-item>
+                            </ion-col>
+                            <ion-col>
+                                <ion-item>
+                                    <ion-radio mode="md" value="Hospital" color="success"></ion-radio>
+                                    <ion-label>Hospital</ion-label>
+                                </ion-item>
+                            </ion-col>
+                        </ion-row>
+                    </ion-radio-group>
+                    <hr>
+                    <ion-label>Availability</ion-label>
+                    <ion-radio-group value="Any Day">
+                        <ion-row>
+                            <ion-col>
+                                <ion-item>
+                                    <ion-radio mode="md" value="Any Day" color="success"></ion-radio>
+                                    <ion-label>Any Day</ion-label>
+                                </ion-item>
+                            </ion-col>
+                            <ion-col>
+                                <ion-item>
+                                    <ion-radio mode="md" value="Today" color="success"></ion-radio>
+                                    <ion-label>Today</ion-label>
+                                </ion-item>
+                            </ion-col>
+                            <ion-col>
+                                <ion-item>
+                                    <ion-radio mode="md" value="Tomorrow" color="success"></ion-radio>
+                                    <ion-label>Tomorrow</ion-label>
+                                </ion-item>
+                            </ion-col>
+                        </ion-row>
+                    </ion-radio-group>
+                    <hr>
+                    <ion-label>Examination Fees</ion-label>
+                    <ion-item>
+                        <ion-note color="success" slot="start">{{rangeValue.lower}}</ion-note>
+                        <ion-note color="success" slot="end">{{rangeValue.upper}}</ion-note>
+                        <ion-range id="dual-range" dual-knobs pin color="dark" min="5" max="1000" name="rangeValue"
+                                   [(ngModel)]="rangeValue">
+
+                        </ion-range>
+                    </ion-item>
+                    <ion-label>Gender</ion-label>
+                    <ion-radio-group value="Male">
+                        <ion-row>
+                            <ion-col>
+                                <ion-item>
+                                    <ion-radio mode="md" value="Male" color="success"></ion-radio>
+                                    <ion-label>Male</ion-label>
+                                </ion-item>
+                            </ion-col>
+                            <ion-col>
+                                <ion-item>
+                                    <ion-radio mode="md" value="Female" color="success"></ion-radio>
+                                    <ion-label>Female</ion-label>
+                                </ion-item>
+                            </ion-col>
+                        </ion-row>
+                    </ion-radio-group>
+                    <hr>
+                    <ion-label>Rating</ion-label>
+                    <ionic-rating-component #rating
+                                            activeIcon="star"
+                                            defaultIcon="star-outline"
+                                            activeColor="#006600"
+                                            defaultColor="#aaaaaa"
+                                            readonly="false"
+                                            rating="0"
+                                            fontSize="32px"
+                                            (ratingChanged)="onRatingChange($event)">
+                    </ionic-rating-component>
+                    <hr>
+                    <ion-label>Title</ion-label>
+                    <ion-radio-group value="Professional">
+                        <ion-row>
+                            <ion-col>
+                                <ion-item>
+                                    <ion-radio mode="md" value="Professional" color="success"></ion-radio>
+                                    <ion-label>Professional</ion-label>
+                                </ion-item>
+                            </ion-col>
+                            <ion-col>
+                                <ion-item>
+                                    <ion-radio mode="md" value="Specialist" color="success"></ion-radio>
+                                    <ion-label>Specialist</ion-label>
+                                </ion-item>
+                            </ion-col>
+                        </ion-row>
+                    </ion-radio-group>
+                </ion-card-content>
+            </ion-card>
+
+            <ion-card *ngSwitchCase="'sort'">
+                <ion-list>
+                    <ion-item>
+                        <ion-label>Recommended</ion-label>
+                        <ion-checkbox slot="end"></ion-checkbox>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label>Price Low To High</ion-label>
+                        <ion-checkbox slot="end"></ion-checkbox>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label>Price High To Low</ion-label>
+                        <ion-checkbox slot="end"></ion-checkbox>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label>Top Rating</ion-label>
+                        <ion-checkbox slot="end"></ion-checkbox>
+                    </ion-item>
+                </ion-list>
+            </ion-card>
+        </div>
+        <ion-button expand="block" type="submit" color="success" routerDirection=“back”>
+            Submit
+        </ion-button>
+    </form>
+
+</ion-content>

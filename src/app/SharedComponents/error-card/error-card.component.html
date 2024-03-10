@@ -1,0 +1,7 @@
+<ion-card *ngFor="let error of errorMessages" class="animate__animated animate__zoomIn">
+    <ion-item>
+        <ion-icon name="warning-outline" slot="start" color="warning"
+                  class="animate__animated animate__pulse animate__infinite"></ion-icon>
+        <ion-label color="danger">{{error}}</ion-label>
+    </ion-item>
+</ion-card>

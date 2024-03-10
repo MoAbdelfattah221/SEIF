@@ -1,0 +1,63 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="auth-page"></ion-back-button>
+        </ion-buttons>
+        <ion-title>Sign Up</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="ion-padding">
+        <form (submit)="registrationUser()" #regFormData="ngForm">
+            <ion-item>
+                <ion-label position="floating">Full Name</ion-label>
+                <ion-icon name="person-outline" slot="start"></ion-icon>
+                <ion-input type="text" name="name" [(ngModel)]="authService.regForm.name" required
+                           placeholder=""></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Phone Number</ion-label>
+                <ion-icon name="call-outline" slot="start"></ion-icon>
+                <ion-input type="text" name="mobile" [(ngModel)]="authService.regForm.mobile" required
+                           [pattern]="'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\\s\\./0-9]*$'"
+                           placeholder=""></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Email</ion-label>
+                <ion-icon name="mail-outline" slot="start"></ion-icon>
+                <ion-input type="text" name="email" [(ngModel)]="authService.regForm.email" required ngvemail
+                           placeholder=""></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Password</ion-label>
+                <ion-icon name="lock-closed" slot="start"></ion-icon>
+                <ion-input type="text" name="password" [(ngModel)]="authService.regForm.password" required
+                           placeholder=""></ion-input>
+            </ion-item>
+            <!--            <ion-item>-->
+            <!--                <ion-label position="floating">Password</ion-label>-->
+            <!--                <ion-icon name="lock-open-outline" slot="start"></ion-icon>-->
+            <!--                <ion-input type="password" placeholder="Enter Your Password"></ion-input>-->
+            <!--            </ion-item>-->
+            <!--            <ion-item>-->
+            <!--                <ion-label position="floating">Confirm Password</ion-label>-->
+            <!--                <ion-icon name="lock-closed-outline" slot="start"></ion-icon>-->
+            <!--                <ion-input type="password" placeholder="Confirm Your Password"></ion-input>-->
+            <!--            </ion-item>-->
+            <!--            <ion-item>-->
+            <!--                <ion-label position="floating">Date</ion-label>-->
+            <!--                <ion-icon name="calendar-outline" slot="start"></ion-icon>-->
+            <!--                <ion-datetime placeholder="Select Date"></ion-datetime>-->
+            <!--            </ion-item>-->
+            <br>
+            <ion-button expand="block" color="success" [disabled]="!regFormData.valid" type="submit">Register Now
+            </ion-button>
+        </form>
+        <br>
+        <p class="ion-text-center">Do You Have Already An Account?
+            <ion-router-link color="success" class="underline" routerLink="/auth-page">Sign In?</ion-router-link>
+        </p>
+        <app-error-card [errorMessages]="errorMessages"></app-error-card>
+    </div>
+</ion-content>
